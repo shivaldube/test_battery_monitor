@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   genmsg
+  sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -72,6 +73,7 @@ find_package(catkin REQUIRED COMPONENTS
  generate_messages(
    DEPENDENCIES
    std_msgs
+   sensor_msgs
  )
 
 ################################################
@@ -133,13 +135,13 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/test_battery_monitor_node.cpp)
 
-add_executable(battery_publisher src/battery_publisher.cpp)
-target_link_libraries(battery_publisher ${catkin_LIBRARIES})
-add_dependencies(battery_publisher test_battery_monitor_generate_messages_cpp)
+add_executable(test_case src/test_case.cpp)
+target_link_libraries(test_case ${catkin_LIBRARIES})
+add_dependencies(test_case test_battery_monitor_generate_messages_cpp)
 
-add_executable(battery_subscriber src/battery_subscriber.cpp)
-target_link_libraries(battery_subscriber ${catkin_LIBRARIES})
-add_dependencies(battery_subscriber  test_battery_monitor_generate_messages_cpp)
+add_executable(battery_monitor src/battery_monitor.cpp)
+target_link_libraries(battery_monitor ${catkin_LIBRARIES})
+add_dependencies(battery_monitor  test_battery_monitor_generate_messages_cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
